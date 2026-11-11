@@ -1,0 +1,26 @@
+{
+  "contactPageField": {
+    "Forename": "Neddie",
+    "Email": "neddie.seagoon@goons.com",
+    "Message": "Needle, nardle, noo!"
+  },
+  "shoppingCart": {
+    "toysToBuy": [
+      {
+        "toyName": "Stuffed Frog",
+        "toyQuantity": 2,
+        "toyPrice": 10.99
+      },
+      {
+        "toyName": "Fluffy Bunny",
+        "toyQuantity": 5,
+        "toyPrice": 9.99
+      },
+      {
+        "toyName": "Valentine Bear",
+        "toyQuantity": 3,
+        "toyPrice": 14.99
+      }
+    ]
+  }
+}

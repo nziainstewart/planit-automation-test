@@ -1,0 +1,17 @@
+{
+  "name": "planit-automation-test",
+  "version": "1.0.0",
+  "description": "Playwright UI tests for Planit assessment",
+  "scripts": {
+    "test": "playwright test",
+    "test:contact-repeat": "playwright test tests/TC2_contactFormSubmission.spec.ts --repeat-each=5 --retries=0 --workers=1"
+  },
+  "keywords": [],
+  "author": "Iain Stewart",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^26.6.6"
+  }
+}
