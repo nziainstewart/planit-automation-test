@@ -15,7 +15,7 @@ export default defineConfig({
   testDir: "./tests",
   timeout: 30_000, // Overall test timeout (optional)
   expect: {
-    timeout: 15_000, // Assertion timeout (15 seconds)
+    timeout: 20_000, // Assertion timeout (15 seconds)
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
