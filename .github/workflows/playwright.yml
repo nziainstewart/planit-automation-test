@@ -8,12 +8,11 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
@@ -24,40 +23,48 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
+      # --- RUN 1: ALL TESTS ---
       - name: Run all tests
         run: npm test
+        env:
+          PLAYWRIGHT_HTML_REPORT: playwright-report-all
+          PLAYWRIGHT_JUNIT_OUTPUT_NAME: results/junit-all.xml
 
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v4
+      - name: Upload HTML report (All Tests)
+        uses: actions/upload-artifact@v5
         if: always()
         with:
           name: playwright-report-all-tests
-          path: playwright-report/
+          path: playwright-report-all/
           retention-days: 14
 
-      - name: Upload JUnit results-all-tests
-        uses: actions/upload-artifact@v4
+      - name: Upload JUnit results (All Tests)
+        uses: actions/upload-artifact@v5
         if: always()
         with:
-          name: junit-results
-          path: results/junit.xml
+          name: junit-results-all-tests
+          path: results/junit-all.xml
           retention-days: 14
 
+      # --- RUN 2: REPEATED CONTACT FORM ---
       - name: Run contact form test 5 times (100% pass rate check)
         run: npm run test:contact-repeat
+        env:
+          PLAYWRIGHT_HTML_REPORT: playwright-report-five
+          PLAYWRIGHT_JUNIT_OUTPUT_NAME: results/junit-five.xml
 
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v4
+      - name: Upload HTML report (Repeated Contact)
+        uses: actions/upload-artifact@v5
         if: always()
         with:
           name: playwright-report-five-times-contact
-          path: playwright-report/
+          path: playwright-report-five/
           retention-days: 14
 
-      - name: Upload JUnit results
-        uses: actions/upload-artifact@v4
+      - name: Upload JUnit results (Repeated Contact)
+        uses: actions/upload-artifact@v5
         if: always()
         with:
           name: junit-results-five-times-contact
-          path: results/junit.xml
+          path: results/junit-five.xml
           retention-days: 14
